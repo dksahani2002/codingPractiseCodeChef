@@ -1,0 +1,62 @@
+#include <stdio.h>
+void merge(int a[] , int l , int mid , int u ){
+    int i,j,k=l;
+    int b[u-l];
+    i=l;
+    j=mid + 1;
+    while(i<=mid && j<=u){
+        if(a[i]<a[j]){
+            i++;
+            b[k]=a[i];
+        }
+        else{
+            b[k]=a[j];
+            j++;
+        }
+        k++;
+    }
+    if(i>mid){
+        while(j<=u){
+            b[k]=a[j];
+            j++;
+        }
+    }
+    else{
+        while(i<=mid){
+            b[k]=a[i];
+            i++;
+        }
+    }
+    for(int i=l;i<=u;i++){
+        a[i]=b[i];
+    }
+}
+void mergesort(int a[] , int l , int u){
+    
+    while(u>l){
+        int mid;
+        mid=(l+u)/2;
+        mergesort(a,l,mid);
+        mergesort(a,mid + 1,u);
+        merge(a,l,mid,u);
+        
+    }
+}
+int main(void) {
+    int t;
+	scanf("%d",&t);
+    while(t--){
+        int n;
+        scanf("%d",&n);
+        int a[n];
+        for(int i=0;i<n;i++){
+            scanf("%d",&a[i]);
+        }
+        mergesort(a,0,n-1);
+        printf("%d\n",a[0]+a[1]);
+    }
+        
+	// your code goes here
+	return 0;
+}
+
