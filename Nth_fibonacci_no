@@ -1,0 +1,32 @@
+#include<stdio.h>
+int static f[10]={0};
+int printFibo(int n ){
+    
+    if(n<=1){
+        return n;
+    }
+    else{
+        int left=0,right=0;
+        if(f[n-1]!=0){
+            left = f[n-1];
+        }
+        else{
+            left=printFibo(n-1);
+            f[n-1]=left;
+        }
+        if(f[n-2]!=0){
+            right= f[n-2];
+        }
+        else{
+            right=printFibo(n-2);
+            f[n-2]=right;
+        }
+        return left+right;
+    }
+        
+}
+int main(){
+    int n ;
+    scanf("%d",&n);
+    printf("%d is %dth fibo",printFibo(n),n);
+}
