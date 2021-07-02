@@ -1,0 +1,40 @@
+// ugly number code 
+#include <stdio.h>
+int maxdiv(int a ,  int b){
+    while(a%b==0){
+        a=a/b;
+    }
+    return a;
+}
+int isugly(int no){
+    no=maxdiv(no,2);
+    no=maxdiv(no,3);
+    no=maxdiv(no,5);
+    if(no==1){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+int uglyno(int no){
+    int i=1;
+    int count=1;
+    while(no>count){
+         i++;
+        if(isugly(i)){
+            count++;
+        }
+       
+    }
+    return i;
+}
+
+int main()
+{
+    int no ;
+    scanf("%d",&no);
+    printf("%d is %dth ugly number",uglyno(no),no);
+
+    return 0;
+}
