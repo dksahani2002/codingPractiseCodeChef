@@ -1,0 +1,17 @@
+#include<iostream>
+ using namespace std;
+ int permutation(int n , int k){
+     if(k==0)
+     {
+         return 1;
+     }
+     if(n>k){
+         return permutation(n- 1 , k) + k*permutation(n- 1 , k- 1);
+     }
+     
+ }
+ int main(){
+     int n , k;
+     cin>>n>>k;
+     cout<<permutation(n,k);
+ }
