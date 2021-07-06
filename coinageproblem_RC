@@ -1,0 +1,22 @@
+ #include<iostream>
+ using namespace std;
+ int coinageProb(int s[],int n , int sum){
+     if(sum==0){
+         return 1;
+         
+     }
+     if(sum<0){ 
+         return 0;
+         
+     }
+     if(n<=0 && sum>=1){
+         return 0;
+     }
+     return coinageProb(s , n , sum - s[n - 1]) + coinageProb(s , n - 1 , sum);
+ }
+int main(){
+    int arr[] = {1, 2, 3,4};
+    int m = sizeof(arr)/sizeof(arr[0]);
+    cout<<coinageProb(arr, m, 4);
+    return 0;
+}
