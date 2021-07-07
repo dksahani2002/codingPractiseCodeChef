@@ -1,0 +1,38 @@
+ #include<bits/stdc++.h>
+ using namespace std;
+ bool modularsum(int arr[] , int n , int m){
+     if(n>m){
+         return true;
+     }
+     bool dp[m];
+     memset(dp,false,m);
+     for(int i=0;i<n;i++){
+         if(dp[0]){
+             return true;
+         }
+         bool temp[m];
+         memset(temp , false , m);
+         for(int j=0;j<m;j++){
+             if(dp[j]==true){
+                 if(dp[(j + arr[i])%m]==false){
+                     temp[j+ arr[i]]=true;
+                 }
+             }
+         }
+         for(int j=0;j<m;j++){
+             if(temp[j]){
+                 dp[j]=true;
+             }
+         }
+         dp[arr[i]%m]=true;
+     }
+     return dp[0];
+ }
+ int main(){
+     int arr[]={
+         1,7
+     };
+     int n = sizeof(arr)/sizeof(arr[0]);
+    cout<<modularsum(arr , n , 7);
+     
+ }
