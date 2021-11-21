@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+char arr[9][9];
+
+int ans=0;
+vector<int>queen;
+
+bool check(int row , int col){
+    for(int prow=0;prow<row;prow++){
+        int pcol=queen[prow];
+        if((pcol==col || abs(prow-row)==abs(pcol-col) ) || arr[row][col]=='*'){
+            return 0;
+        }  
+    }
+    return 1;
+}
+void Nqueen(int lev){
+    if(lev==8){
+        ans++;
+        return ;
+    }
+    for(int col=0;col<8;col++){
+        if(check(lev , col)){
+            queen.push_back(col);
+            Nqueen(lev+1);
+            queen.pop_back();
+        }
+    }
+    
+}
+int main() {
+    for(int i=0;i<8;i++){
+        for(int j=0;j<8;j++){
+            cin>>arr[i][j];
+        }
+    }
+    int lev=0;
+    Nqueen(lev);
+    cout<<ans<<"\n";
+	return 0;
+}
