@@ -1,0 +1,30 @@
+ #include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+ 
+void dfs(int open , int n , int close ,string s ,vector<string>&ans){
+    if(open==n && close==n){
+        ans.push_back(s);
+        return;
+    }
+    if(open<n){
+         
+        dfs(open+1 , n , close ,s+"(" ,ans);
+         
+    }
+    if(open>close){
+        
+        dfs(open , n , close+1, s+")" , ans);
+         
+    }
+}
+int main(){
+    int n;cin>>n;
+    n=n/2;
+    vector<string>v;
+    dfs(0,n,0, "" , v);
+    for(auto i:v){
+        cout<<i<<"\n";
+    }
+    return 0;
+}
